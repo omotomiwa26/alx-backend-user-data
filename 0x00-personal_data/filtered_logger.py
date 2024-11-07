@@ -49,6 +49,33 @@ def get_logger() -> logging.Logger:
     logger.addHandler(stream_handler)
     return logger
 
+
+def get_db():
+    """
+        This creates a connection to the database
+    """
+    # Get the environment variables with defaults
+    username = os.getenv('PERSONAL_DATA_DB_USERNAME', 'root')
+    password = os.getenv('PERSONAL_DATA_DB_PASSWORD', '')
+    host = os.getenv('PERSONAL_DATA_DB_HOST', 'localhost')
+    db_name = os.getenv('PERSONAL_DATA_DB_NAME')
+
+    # Ensure that the database name is set
+    if not db_name:
+        raise ValueError("The database name (PERSONAL_DATA_DB_NAME)\
+                         must be set in the environment variables.")
+
+    # Establish a connection to the database
+    conn = mysql.connector.connect(
+        user=username,
+        password=password,
+        host=host,
+        database=db_name
+    )
+
+    return conn
+
+
 class RedactingFormatter(logging.Formatter):
     """
         Redacting Formatter class
