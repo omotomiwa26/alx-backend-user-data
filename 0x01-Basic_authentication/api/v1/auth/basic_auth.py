@@ -52,8 +52,9 @@ class BasicAuth(Auth):
             decoded_base64_authorization_header: str,
             ) -> Tuple[str, str]:
         """
-            This Extracts user credentials from a base64-decoded authorization
-            header that uses the Basic authentication flow.
+            This Extracts and returns user credentials(user email and pasword)
+            from a base64-decoded authorization header
+            that uses the Basic authentication flow.
         """
         if type(decoded_base64_authorization_header) == str:
             pattern = r'(?P<user>[^:]+):(?P<password>.+)'
