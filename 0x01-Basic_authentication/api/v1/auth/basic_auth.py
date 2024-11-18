@@ -34,7 +34,8 @@ class BasicAuth(Auth):
             base64_authorization_header: str,
             ) -> str:
         """
-            This Decodes a base64-encoded authorization header.
+            This returns the deocded value of base64-encoded
+            authorization header.
         """
         if type(base64_authorization_header) == str:
             try:
